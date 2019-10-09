@@ -10,7 +10,6 @@ import edu.eci.cvds.sampleprj.dao.ClienteDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.samples.entities.Cliente;
-import edu.eci.cvds.samples.entities.Item;
 
 /**
  *
@@ -34,9 +33,14 @@ public class MyBATISClienteDAO implements ClienteDAO {
     }
 
     @Override
-    public void save(Cliente cl) throws PersistenceException {
+    public void save(Cliente cl) throws PersistenceException {                   
+        try{
+            clienteMapper.agregarCliente(cl);
+        }
+        catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al registrar el item "+it.toString(),e);
+        }
         
-        clienteMapper.agregarCliente(cl);
     }
 
     

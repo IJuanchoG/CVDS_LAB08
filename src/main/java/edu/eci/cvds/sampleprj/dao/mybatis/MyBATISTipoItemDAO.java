@@ -30,7 +30,12 @@ public class MyBATISTipoItemDAO implements TipoItemDAO {
 
     @Override
     public TipoItem load(int id) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            TipoItemMapper.agregarCliente(id);
+        }
+        catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al registrar el tipo de item "+it.toString(),e);
+        }
     }
     
 }
