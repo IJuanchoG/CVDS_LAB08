@@ -22,6 +22,9 @@ import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.cvds.samples.entities.Item;
 import edu.eci.cvds.samples.entities.TipoItem;
+import edu.eci.cvds.samples.services.ExcepcionServiciosAlquiler;
+import edu.eci.cvds.samples.services.ServiciosAlquiler;
+import edu.eci.cvds.samples.services.ServiciosAlquilerFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -29,6 +32,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javax.xml.bind.DatatypeConverter.parseDate;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -78,7 +83,13 @@ public class MyBatisExample {
 
         SqlSession sqlss = sessionfact.openSession();
 
+        ServiciosAlquiler factory = ServiciosAlquilerFactory.getInstance().getServiciosAlquiler();
         
+        try {
+            System.out.println(factory.consultarClientes());
+        } catch (ExcepcionServiciosAlquiler ex) {
+            Logger.getLogger(MyBatisExample.class.getName()).log(Level.SEVERE, null, ex);
+        }
         /*//Crear el mapper y usarlo:
         //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class)
         //cm...

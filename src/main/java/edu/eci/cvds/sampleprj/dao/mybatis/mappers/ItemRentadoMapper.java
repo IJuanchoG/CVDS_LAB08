@@ -8,6 +8,7 @@ package edu.eci.cvds.sampleprj.dao.mybatis.mappers;
 import edu.eci.cvds.samples.entities.TipoItem;
 import java.util.Date;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *
@@ -16,9 +17,11 @@ import java.util.List;
 public interface ItemRentadoMapper {
     public List<TipoItem> getItemsRentados();
     
-    public List<TipoItem> getItemsRentadosCliente(long idc);
+    public List<TipoItem> getItemsRentadosCliente(@Param ("clid") long idc);
     
-    public TipoItem getItemRentado(int id);
+    public double getMultaAcumulada(@Param ("clid") long idc);
     
-    public void addItemRentado(int cliid,int itemid,Date fechaini,Date fechafin);
+    public TipoItem getItemRentado(@Param ("irid")int id);
+    
+    public void addItemRentado(@Param ("cliid") int cliid,@Param ("itid") int itemid, @Param ("fini") Date fechaini,@Param ("ffin") Date fechafin);
 }
