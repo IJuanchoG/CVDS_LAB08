@@ -16,6 +16,8 @@ import java.util.List;
 public interface ItemRentadoMapper {
     public List<TipoItem> getItemsRentados();
     
+    public List<TipoItem> getItemsRentadosCliente(long idc);
+    
     public TipoItem getItemRentado(int id);
     
     public void addItemRentado(int cliid,int itemid,Date fechaini,Date fechafin);

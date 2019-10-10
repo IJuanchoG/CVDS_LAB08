@@ -79,7 +79,7 @@ public class MyBatisExample {
         SqlSession sqlss = sessionfact.openSession();
 
         
-        //Crear el mapper y usarlo: 
+        /*//Crear el mapper y usarlo:
         //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class)
         //cm...
         ClienteMapper cm = sqlss.getMapper(ClienteMapper.class);
@@ -88,7 +88,7 @@ public class MyBatisExample {
         System.out.println(cm.consultarCliente(4));
         
         cm.agregarItemRentadoACliente(5, 1, parseDate("2019-03-12"), parseDate("2019-04-12"));
-
+        
         //item mapper punto 4
         ItemMapper im= sqlss.getMapper(ItemMapper.class);
         
@@ -97,7 +97,7 @@ public class MyBatisExample {
         System.out.println("==============================================================================================================================");
         System.out.println(im.consultarItems());
         System.out.println("==============================================================================================================================");
-        System.out.println(im.consultarItem(2030));
+        System.out.println(im.consultarItem(2030));*/
         sqlss.commit();
         
         
