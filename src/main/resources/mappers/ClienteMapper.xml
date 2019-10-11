@@ -35,6 +35,24 @@
 			left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id 
 	</select>
         
+        
+        <select parameterType="map" id="itemsRentadosCliente" resultMap = "ClienteResult">
+            SELECT
+            
+            i.id,
+            i.ITEMS_id,
+            i.fechainiciorenta,
+            i.fechafinrenta
+            
+            
+            FROM 
+            VI_CLIENTES as c, 
+            VI_ITEMRENTADO as i 
+            WHERE
+            c.documento = #{clid} AND
+            c.documento = i.CLIENTES_documento;
+        </select>
+        
         <select parameterType="map" id="consultarCliente" resultMap="ClienteResult">
             
                         select    

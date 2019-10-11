@@ -10,8 +10,13 @@ import edu.eci.cvds.sampleprj.dao.ClienteDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.samples.entities.Cliente;
+<<<<<<< HEAD
 import java.util.Calendar;
 import java.util.Date;
+=======
+import edu.eci.cvds.samples.entities.Item;
+import edu.eci.cvds.samples.entities.ItemRentado;
+>>>>>>> 1168eb12cb3c63901f932b45c1d49907387d7f29
 import java.util.List;
 
 /**
@@ -49,7 +54,7 @@ public class MyBATISClienteDAO implements ClienteDAO {
     @Override
     public List<Cliente> load() throws PersistenceException {
         try{
-        return clienteMapper.consultarClientes();
+            return clienteMapper.consultarClientes();
         }
         catch(org.apache.ibatis.exceptions.PersistenceException e){
             throw new PersistenceException("Error al consultar los clientes ",e);
@@ -57,6 +62,7 @@ public class MyBATISClienteDAO implements ClienteDAO {
     }
 
     @Override
+<<<<<<< HEAD
     public void saveItemRentado(long clid, int itid, Date fechaIni, int numeroDias) throws PersistenceException {
         Calendar calendario=Calendar.getInstance();
         calendario.setTime(fechaIni);
@@ -64,6 +70,16 @@ public class MyBATISClienteDAO implements ClienteDAO {
         Date fechaFin=calendario.getTime();
         
         clienteMapper.agregarItemRentadoACliente(clid,itid,fechaIni,fechaFin);
+=======
+    public List<ItemRentado> itemsRentadosCliente(long clid) throws PersistenceException{
+        try{
+            List<ItemRentado> n = clienteMapper.itemsRentadosCliente(clid);
+            return n;
+        }
+        catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al consultar los items rentados del cliente ",e);
+        }
+>>>>>>> 1168eb12cb3c63901f932b45c1d49907387d7f29
     }
 
     
