@@ -10,6 +10,8 @@ import edu.eci.cvds.sampleprj.dao.ClienteDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.samples.entities.Cliente;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,6 +54,16 @@ public class MyBATISClienteDAO implements ClienteDAO {
         catch(org.apache.ibatis.exceptions.PersistenceException e){
             throw new PersistenceException("Error al consultar los clientes ",e);
         }
+    }
+
+    @Override
+    public void saveItemRentado(long clid, int itid, Date fechaIni, int numeroDias) throws PersistenceException {
+        Calendar calendario=Calendar.getInstance();
+        calendario.setTime(fechaIni);
+        calendario.add(Calendar.DAY_OF_YEAR, numeroDias);
+        Date fechaFin=calendario.getTime();
+        
+        clienteMapper.agregarItemRentadoACliente(clid,itid,fechaIni,fechaFin);
     }
 
     

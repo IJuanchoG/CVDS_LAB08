@@ -21,8 +21,8 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class AlquilerItemBean extends BasePageBean {   
     private String mensaje;
-    private Cliente clienteSeleccionado;
-
+    private Cliente clienteSeleccionado;   
+    
     public String getMensaje() {
         return mensaje;
     }
@@ -82,11 +82,12 @@ public class AlquilerItemBean extends BasePageBean {
         }
     }
     
-    public void registrarCliente(Cliente c){
+    public void registrarCliente(String nombre, long documento, String telefono, String direccion, String email ){
         try{
+            Cliente c = new Cliente(nombre,documento,telefono,direccion,email);            
             s.registrarCliente(c);
         }catch(ExcepcionServiciosAlquiler e){
-            mensaje = "No se encuentran clientes registrados";
+            mensaje = "No se puede registrar el cliente";
         }
     }
     public void registrarItem(Item i){
