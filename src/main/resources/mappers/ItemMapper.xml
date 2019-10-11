@@ -22,6 +22,7 @@
         ti.id as tipoitem_id,
         ti.descripcion as tipoitem_descripcion 
         from VI_ITEMS as i ,VI_TIPOITEM as ti
+        where i.TIPOITEM_id=ti.id
         
     </select>
     
@@ -38,6 +39,20 @@
         ti.descripcion as tipoitem_descripcion 
         from VI_ITEMS as i ,VI_TIPOITEM as ti
         where i.TIPOITEM_id=ti.id and i.id = #{itid}
+    </select>
+    
+    <select parameterType = "map" id = "consultarItemsDisponibles" resultMap="ItemResult">
+        
+        SELECT  i.id ,
+        i.nombre ,
+        i.descripcion,
+        i.fechalanzamiento  ,
+        i.tarifaxdia  ,
+        i.formatorenta  ,
+        i.genero ,        
+        ti.id as tipoitem_id,
+        ti.descripcion as tipoitem_descripcion FROM  VI_ITEMS as i, VI_TIPOITEM as ti 
+        WHERE  i.id not in (SELECT id from VI_ITEMRENTADO) and i.TIPOITEM_id=ti.id;
     </select>
     
     <resultMap type='Item' id='ItemResult'>
