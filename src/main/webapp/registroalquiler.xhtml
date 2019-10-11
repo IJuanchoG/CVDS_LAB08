@@ -8,6 +8,37 @@
 		Registro de alquiler
     </h:head>
     <h:body>
-        
+        <h:form id="guess_form">            
+            <p:dataTable value ="#{RegistroBean.getClienteSeleccionado().rentados}" var ="rentados" rows="10"
+                 paginator="true"
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="5,10,15" style="margin-bottom:20px"  resizableColumns="true" >
+                <f:facet name="header">
+                    LISTA DE ITEMS REGISTRADOS 
+                </f:facet>
+                <p:column headerText="ID" filterMatchMode="contains" >
+                        <p.center>
+                        <p:outputLabel value ="#{rentados.id}"/>
+                        </p.center>
+                </p:column>
+                <p:column headerText="items" filterMatchMode="contains" >
+                        <p.center>
+                        <p:outputLabel value ="#{rentados.item.nombre}"/>
+                        </p.center>
+                </p:column>
+                <p:column headerText="fecha Inicio" filterMatchMode="contains" >
+                        <p.center>
+                        <p:outputLabel value ="#{rentados.fechainiciorenta}"/>
+                        </p.center>
+                </p:column>
+                <p:column headerText="fecha fin" filterMatchMode="contains" >
+                        <p.center>
+                        <p:outputLabel value ="#{rentados.fechafinrenta}"/>
+                        </p.center>
+                </p:column>                
+            </p:dataTable>
+            <h:commandLink action = "registrocliente?faces-redirect = true" value = "volver">
+            </h:commandLink>
+        </h:form>
     </h:body>
 </html>
